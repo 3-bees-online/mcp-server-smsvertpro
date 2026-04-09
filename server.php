@@ -256,7 +256,7 @@ function handleTool($toolName, $args, $token)
         case 'generate_otp':
             $result = callApi($token, array(
                 'request' => 'generate_otp',
-                'to'      => $args['to'],
+                'gsm'     => $args['to'],
                 'sender'  => $args['sender']
             ));
             if(isset($result['status']) && $result['status'] === 'OTP_SENT')
@@ -268,14 +268,22 @@ function handleTool($toolName, $args, $token)
         case 'verify_otp':
             $result = callApi($token, array(
                 'request' => 'verify_otp',
-                'to'      => $args['to'],
+                'gsm'     => $args['to'],
                 'code'    => $args['code']
             ));
-            if(isset($result['status']) && $result['status'] === 'OTP_VALID')
+            if(isset($result['status']) && $result['status'] === 'OTP_TRUE')
             {
                 return "Code OTP valide. Identité confirmée.";
             }
-            return "Code OTP invalide ou expiré. Statut : " . ($result['status'] ?? 'Inconnu');
+            if(isset($result['status']) && $result['status'] === 'OTP_FALSE')
+            {
+                return "Code OTP invalide ou expiré.";
+            }
+            if(isset($result['status']) && $result['status'] === 'OTP_VERIFIED')
+            {
+                return "Ce code OTP a déjà été vérifié le " . ($result['verified_at'] ?? '?') . ".";
+            }
+            return "Erreur OTP : " . ($result['status'] ?? 'Inconnu');
 
         default:
             return "Outil inconnu : " . $toolName;
