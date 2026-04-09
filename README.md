@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" alt="SMS Vert Pro" width="220" />
+</p>
+
 # SMS Vert Pro — Serveur MCP
 
 Serveur [MCP (Model Context Protocol)](https://modelcontextprotocol.io) pour envoyer des SMS professionnels via [SMS Vert Pro](https://www.smsvertpro.com) depuis n'importe quel agent IA : Claude, ChatGPT, LangChain, CrewAI, AutoGen, etc.
