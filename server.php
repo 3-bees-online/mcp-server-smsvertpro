@@ -124,7 +124,7 @@ $tools = array(
     ),
     array(
         'name' => 'cancel_sms',
-        'description' => "Annule un SMS programmé ou une campagne entière. Seuls les SMS en attente d'envoi peuvent être annulés. Les crédits sont automatiquement recrédités.",
+        'description' => "Annule un SMS programmé ou une campagne entière. Seuls les SMS en attente d'envoi peuvent être annulés. Les crédits sont automatiquement recrédités. IMPORTANT : le campaign_id est TOUJOURS requis (retourné par send_sms). Pour annuler un SMS spécifique, fournir aussi le sms_id en plus du campaign_id.",
         'inputSchema' => array(
             'type' => 'object',
             'properties' => array(
